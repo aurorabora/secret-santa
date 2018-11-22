@@ -3,23 +3,28 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { createStackNavigator , createAppContainer } from 'react-navigation';
 
-/************* Screens *************/
-import SplashScreen from './components/SplashScreen';
-import AddListScreen from './components/AddListScreen';
-
 /*********** Redux ***********/
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
 
+/************* Screens *************/
+import SplashScreen from './components/SplashScreen';
+import AddListScreen from './components/AddListScreen';
+import CheckListScreen from './components/CheckListScreen';
+
 const MainNavigation = createStackNavigator({
 	SplashScreen: {
-		screen: SplashScreen
+		screen: SplashScreen,
 	},
 	AddListScreen: {
-		screen: AddListScreen
-	}
+		screen: AddListScreen,
+	},
+	CheckListScreen: {
+		screen: CheckListScreen,
+	},
 } , {
+	initialRouteName: "AddListScreen",
 	navigationOptions: {
 		gesturesEnabled: false
 	}

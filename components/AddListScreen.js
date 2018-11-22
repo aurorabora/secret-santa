@@ -14,6 +14,12 @@ class AddListScreen extends Component {
 		this.state = {
 			input: "",
 			list: ["bob", "mary", "john", "jim"],
+			pairings: {
+				bob: null,
+				mary: null,
+				john: null,
+				jim: null,
+			},
 			errors: null
 		};
 	}
@@ -42,13 +48,26 @@ class AddListScreen extends Component {
 	}
 
 	submitInput = () => {
-		let { input , list } = this.state;
+		let { input , list , pairings } = this.state;
+		for ( key in pairings ) {
+			if ( key === input ) {
+				return this.setState( {
+					errors: "That name is already used!"
+				} );
+			}
+		}
 		if(!input) {
 			return this.setState({
 				errors: "Please enter a name!"
 			});
 		} else {
 			list.push(input);
+			this.setState( {
+				pairings: {
+					...this.state.pairings,
+					[input]: null,
+				}
+			} );
 		}
 
 		this.setState( {
@@ -62,7 +81,7 @@ class AddListScreen extends Component {
 		return (
 			<View style={[styles.container, styles.container]}>
 				<View style={styles.title_container}>
-					<Text style={styles.title}>Enter everyone's name!</Text>
+					<Text style={styles.title}>Enter everyone&#39;s name!</Text>
 				</View>
 				<View style={styles.row}>
 					<View style={styles.input_container}>
@@ -73,7 +92,7 @@ class AddListScreen extends Component {
 							style={styles.textInput}
 						/>
 					</View>
-					<TouchableOpacity onPress={this.submitInput} style={styles.button_container}>
+					<TouchableOpacity onPress={this.submitInput} style={[styles.button_container]}>
 						<Text style={styles.button_text}>Add!</Text>
 					</TouchableOpacity>
 				</View>
@@ -83,6 +102,10 @@ class AddListScreen extends Component {
 				<View style={styles.list_container}>
 					{this.renderList()}
 				</View>
+
+				<TouchableOpacity style={[navigate.button_container]}>
+					<Text style={styles.button_text}>Make your list!</Text>
+				</TouchableOpacity>
 			</View>
 		);
 	}
@@ -130,7 +153,7 @@ const styles = StyleSheet.create({
 		height: 30,
 	},
 	button_container: {
-		backgroundColor: "red",
+		backgroundColor: "rgb(221, 1, 34)",
 		width: "40%",
 		display: "flex",
 		alignItems: "center",
@@ -145,7 +168,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "white",
 		height: "50%",
 		width: "95%",
-		marginTop: 30,
+		marginTop: 15,
 		padding: 20
 	},
 	list_item: {
@@ -161,4 +184,17 @@ const errors = StyleSheet.create({
 		fontSize: 25,
 		marginTop: 5
 	}
+});
+
+const navigate = StyleSheet.create({
+	button_container: {
+		backgroundColor : "rgb(246, 185, 1)",
+		padding: 10,
+		width: "80%",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		borderRadius: 10,
+		marginTop: 20,
+	},
 });
