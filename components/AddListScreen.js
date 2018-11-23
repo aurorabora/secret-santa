@@ -7,6 +7,8 @@ import {
 	TouchableOpacity,
 	FlatList,
 } from "react-native";
+import { connect } from 'react-redux';
+import { createList } from '../actions/index';
 
 class AddListScreen extends Component {
 	constructor(props) {
@@ -77,7 +79,14 @@ class AddListScreen extends Component {
 		} );
 	};
 
+	handleCreateList = () => {
+		const { list , pairings } = this.state;
+		this.props.createList(list , pairings);
+		this.props.navigation.navigate("CheckListScreen");
+	} 
+
 	render() {
+		this.props;
 		return (
 			<View style={[styles.container, styles.container]}>
 				<View style={styles.title_container}>
@@ -103,14 +112,25 @@ class AddListScreen extends Component {
 					{this.renderList()}
 				</View>
 
-				<TouchableOpacity style={[navigate.button_container]}>
+				<TouchableOpacity onPress={this.handleCreateList} style={[navigate.button_container]}>
 					<Text style={styles.button_text}>Make your list!</Text>
 				</TouchableOpacity>
 			</View>
 		);
 	}
 }
-export default AddListScreen;
+
+function mapStateToProps( state ) {
+	return {
+		list: state.listReducer.list,
+		pairings: state.listReducer.pairings
+	}
+} 
+
+const mapDispatchToProps = {
+	createList
+}
+export default connect( mapStateToProps , mapDispatchToProps )(AddListScreen);
 
 const styles = StyleSheet.create({
 	container: {

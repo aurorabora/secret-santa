@@ -4,9 +4,12 @@ import {
      Text,
      StyleSheet
 } from "react-native";
+import { connect } from 'react-redux';
 
 class CheckListScreen extends Component {
      render() {
+          this.props;
+          debugger;
           return (
                <View style={styles.container}>
                     <Text>CheckListScreen</Text>
@@ -14,7 +17,15 @@ class CheckListScreen extends Component {
           );
      }
 }
-export default CheckListScreen;
+
+function mapStateToProps( state ) {
+     return {
+          list: state.listReducer.list,
+          pairings: state.listReducer.pairings,
+     }
+}
+
+export default connect( mapStateToProps )(CheckListScreen);
 
 const styles = StyleSheet.create({
      container: {

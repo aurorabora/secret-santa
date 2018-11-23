@@ -35,10 +35,10 @@ const AppNavigator = createAppContainer(MainNavigation)
 export default class App extends React.Component {
 	render() {
 		
-		// const store = createStore(rootReducer, {}, applyMiddleware());
+		const store = createStore(rootReducer, {}, applyMiddleware());
 
 		return (
-			<Provider>
+			<Provider store={store}>
 				<AppNavigator />
 			</Provider>
 		);
