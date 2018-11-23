@@ -24,7 +24,6 @@ const MainNavigation = createStackNavigator({
 		screen: CheckListScreen,
 	},
 } , {
-	initialRouteName: "AddListScreen",
 	navigationOptions: {
 		gesturesEnabled: false
 	}

@@ -8,13 +8,14 @@ export default ( state = DEFAULT_STATE , action ) => {
      switch( action.type ) {
           case types.CREATE_LIST:
                let { list , pairings } = action.payload;
+               let referenceList = [...list];
                for (key in pairings) {
-                    let randomNum = Math.floor(Math.random() * list.length);
-                    while (key === list[randomNum]) {
-                         randomNum = Math.floor(Math.random() * list.length);
+                    let randomNum = Math.floor(Math.random() * referenceList.length);
+                    while (key === referenceList[randomNum]) {
+                         randomNum = Math.floor(Math.random() * referenceList.length);
                     }
                     pairings[key] = list[randomNum];
-                    list.splice(randomNum, 1);
+                    referenceList.splice(randomNum, 1);
                }
                return {
                     ...state,
