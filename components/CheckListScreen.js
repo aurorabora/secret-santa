@@ -2,17 +2,33 @@ import React, { Component } from "react";
 import { 
      View,
      Text,
-     StyleSheet
+     StyleSheet,
+     FlatList
 } from "react-native";
 import { connect } from 'react-redux';
 
 class CheckListScreen extends Component {
      render() {
-          this.props;
-          debugger;
           return (
                <View style={styles.container}>
-                    <Text>CheckListScreen</Text>
+                    <View style={styles.title_container}>
+                         <Text style={styles.title}>Check it twice!</Text>
+                    </View>
+                    <View style={styles.list_container} >
+                         <FlatList
+                              data={this.props.list}
+                              renderItem={(item) => {
+                                   return (
+                                        <Text key={item.index} style={styles.list_item}>
+                                             {item.item}
+                                        </Text>
+                                   )
+                              }}
+                              initialScrollIndex={0}
+                              keyExtractor={(item) => item.index}
+                              getItemLayout={(data, index) => ({ length: 100, offset: 0, index: index })}
+                         />
+                    </View>
                </View>
           );
      }
@@ -29,8 +45,31 @@ export default connect( mapStateToProps )(CheckListScreen);
 
 const styles = StyleSheet.create({
      container: {
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center'
-     }
+		display: "flex",
+		flex: 1,
+		alignItems: "center",
+		backgroundColor: "green",
+     },
+     title_container: {
+		width: "100%",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		height: "10%",
+	},
+	title: {
+		fontSize: 35,
+		color: "white",
+     },
+     list_container: {
+		backgroundColor: "white",
+		height: "50%",
+		width: "95%",
+		marginTop: 15,
+		padding: 20
+     },
+     list_item: {
+		marginTop: 10,
+		fontSize: 20
+	},
 });

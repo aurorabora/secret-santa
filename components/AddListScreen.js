@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux';
 import { createList } from '../actions/index';
 
-class AddListScreen extends Component {
+class AddListScreen extends Component {	
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -88,7 +88,7 @@ class AddListScreen extends Component {
 	render() {
 		this.props;
 		return (
-			<View style={[styles.container, styles.container]}>
+			<View style={styles.container}>
 				<View style={styles.title_container}>
 					<Text style={styles.title}>Enter everyone&#39;s name!</Text>
 				</View>
