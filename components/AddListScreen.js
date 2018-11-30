@@ -51,7 +51,11 @@ class AddListScreen extends Component {
 
 	submitInput = () => {
 		let { input , list , pairings } = this.state;
-		for ( key in pairings ) {
+		
+        /**************************************
+        /********** Data Validation ***********
+        **************************************/
+        for ( key in pairings ) {
 			if ( key === input ) {
 				return this.setState( {
 					errors: "That name is already used!"
@@ -61,7 +65,10 @@ class AddListScreen extends Component {
 		if(!input) {
 			return this.setState({
 				errors: "Please enter a name!"
-			});
+            });
+        /*********************************************
+        /************ End Data Validation ************
+        **********************************************/
 		} else {
 			list.push(input);
 			this.setState( {
