@@ -13,6 +13,7 @@ import SplashScreen from './components/SplashScreen';
 import AddListScreen from './components/AddListScreen';
 import CheckListScreen from './components/CheckListScreen';
 import SelectNameToRevealScreen from './components/SelectNameToRevealScreen';
+import RevealScreen from './components/RevealScreen';
 
 const MainNavigation = createStackNavigator({
     SplashScreen: {
@@ -26,6 +27,9 @@ const MainNavigation = createStackNavigator({
     },
     SelectNameToRevealScreen: {
         screen: SelectNameToRevealScreen,
+    },
+    RevealScreen: {
+        screen: RevealScreen,
     }
 }, {
         navigationOptions: {

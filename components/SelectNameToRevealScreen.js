@@ -3,6 +3,7 @@ import {
     View,
     Text,
     StyleSheet,
+    TouchableOpacity,
     SectionList,
 } from "react-native";
 
@@ -12,8 +13,11 @@ class SelectNameToRevealScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sections: null,
+            sections: [],
         };
+    }
+
+    componentDidMount() {
         this.createSections();
     }
 
@@ -21,19 +25,27 @@ class SelectNameToRevealScreen extends Component {
         const { pairings, list } = this.props;
 
         let sectionsObject = {};
-        for (key in pairings) {
-            const first_letter = key[0];
-            sectionsObject = Object.assign(sectionsObject, { [first_letter]: null });
-            // for (let i = 0; i < list.length; i++) {
-            //     if (list[i][0] === first_letter) {
-            //         sectionsObject = {
-            //             [first_letter]: list[i]
-            //         }
-            //     }
-            // }
-        }
-        console.log(sectionsObject);
-        debugger;
+        for (let key in pairings) {
+            const first_letter = key[0].toUpperCase();
+            sectionsObject = Object.assign(sectionsObject, { [first_letter]: [] });
+            for (let i = 0; i < list.length; i++) {
+                if (list[i][0].toUpperCase() === first_letter) {
+                    Object.assign(sectionsObject, { [first_letter]: [...sectionsObject[first_letter], list[i]] });
+                }
+            }
+        };
+        let sectionsArray = [];
+        for (let key in sectionsObject) {
+            sectionsArray.push({ title: key, data: sectionsObject[key] });
+        };
+
+        this.setState({
+            sections: sectionsArray,
+        });
+    }
+
+    onSelectName = (item) => {
+        this.props.navigation.navigate("RevealScreen", { item });
     }
 
     render() {
@@ -44,12 +56,29 @@ class SelectNameToRevealScreen extends Component {
                         Select Your Name!
                     </Text>
                 </View>
-                <SectionList
-                    renderItem={({ item, index, section }) => (
-                        <Text key={index}>
-                            {item}
-                        </Text>)}
-                />
+                <View style={styles.list_container}>
+                    <SectionList
+                        renderItem={({ item, index, section }) => {
+                            return (
+                                <TouchableOpacity onPress={() => { this.onSelectName(item) }} style={styles.item_container} key={index} value={item}>
+                                    <Text style={styles.list_item}>
+                                        {item.toUpperCase()}
+                                    </Text>
+                                </TouchableOpacity>)
+                        }}
+                        renderSectionHeader={({ section: { title } }) => {
+                            return (
+                                <View style={styles.section_title_container}>
+                                    <Text style={styles.section_title}>
+                                        {title}
+                                    </Text>
+                                </View>
+                            );
+                        }}
+                        sections={this.state.sections}
+                        keyExtractor={(item, index) => item + index}
+                    />
+                </View>
             </View>
         );
     }
@@ -86,15 +115,28 @@ const styles = StyleSheet.create({
         fontSize: 35,
         color: "white",
     },
+    section_title_container: {
+        width: "100%",
+        backgroundColor: "lightgray",
+        padding: 10,
+        borderRadius: 5
+    },
+    section_title: {
+        fontWeight: "bold",
+        fontSize: 15,
+    },
     list_container: {
         backgroundColor: "white",
         height: "50%",
         width: "95%",
         marginTop: 15,
-        padding: 20
+    },
+    item_container: {
+        width: "100%",
+        margin: 10,
     },
     list_item: {
-        marginTop: 10,
-        fontSize: 20
+        fontSize: 20,
+        marginLeft: 10,
     },
 });
