@@ -7,6 +7,7 @@ import {
 } from "react-native";
 
 import { connect } from 'react-redux';
+import { updateList } from '../actions/index';
 
 class RevealScreen extends Component {
     constructor(props) {
@@ -26,6 +27,13 @@ class RevealScreen extends Component {
             reveal: this.props.pairings[this.state.selectedName],
             switch: 'loading',
         });
+    }
+
+    pressNavigateButton = () => {
+        let newPairings = this.props.pairings;
+        delete newPairings[this.state.selectedName];
+        this.props.updateList(newPairings);
+        this.props.navigation.navigate("SelectNameToRevealScreen", { refresh: () => { console.log("refreshed") } });
     }
 
     renderLoader = () => {
@@ -73,7 +81,7 @@ class RevealScreen extends Component {
                 </View>
 
                 <View style={navigate.nav_button_container}>
-                    <TouchableOpacity style={navigate.button_container}>
+                    <TouchableOpacity onPress={this.pressNavigateButton} style={navigate.button_container}>
                         <Text style={styles.button_text}>Pass the phone!</Text>
                     </TouchableOpacity>
                 </View>
@@ -98,7 +106,12 @@ function mapStateToProps(state) {
         pairings: state.listReducer.pairings,
     };
 }
-export default connect(mapStateToProps, {})(RevealScreen);
+
+const mapDispatchToProps = {
+    updateList
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RevealScreen);
 
 const styles = StyleSheet.create({
     container: {

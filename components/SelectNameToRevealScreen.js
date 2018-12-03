@@ -21,8 +21,15 @@ class SelectNameToRevealScreen extends Component {
         this.createSections();
     }
 
+    shouldComponentUpdate() {
+        debugger;
+        console.log(this.props.navigation.state.params);
+        return true;
+    }
+
     createSections = () => {
         const { pairings, list } = this.props;
+        debugger;
 
         let sectionsObject = {};
         for (let key in pairings) {
