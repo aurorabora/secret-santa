@@ -7,6 +7,7 @@ import {
 } from "react-native";
 
 import { connect } from 'react-redux';
+import { updateList , createSections } from '../actions/index';
 
 class RevealScreen extends Component {
     constructor(props) {
@@ -26,6 +27,18 @@ class RevealScreen extends Component {
             reveal: this.props.pairings[this.state.selectedName],
             switch: 'loading',
         });
+    }
+
+    pressNavigateButton = () => {
+        let newPairings = this.props.pairings;
+        delete newPairings[this.state.selectedName];
+        const newList = Object.keys(newPairings);
+        this.props.updateList(newList , newPairings);
+        this.props.createSections(newList, newPairings);
+        if (!newList.length) {
+            return this.props.navigation.navigate("FinishScreen");
+        }
+        this.props.navigation.navigate("SelectNameToRevealScreen", { refresh: () => { console.log("refreshed") } });
     }
 
     renderLoader = () => {
@@ -63,6 +76,7 @@ class RevealScreen extends Component {
     }
 
     renderSecretSanta = () => {
+        const { list } = this.props;
         return (
             <View style={{ width: "100%", height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <View style={[styles.title_container, { marginTop: 20 }]}>
@@ -73,8 +87,8 @@ class RevealScreen extends Component {
                 </View>
 
                 <View style={navigate.nav_button_container}>
-                    <TouchableOpacity style={navigate.button_container}>
-                        <Text style={styles.button_text}>Pass the phone!</Text>
+                    <TouchableOpacity onPress={this.pressNavigateButton} style={navigate.button_container}>
+                        <Text style={styles.button_text}>{list.length == 1 ? "Finish!" : "Pass the phone!" }</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -95,10 +109,17 @@ class RevealScreen extends Component {
 
 function mapStateToProps(state) {
     return {
+        list: state.listReducer.list,
         pairings: state.listReducer.pairings,
     };
 }
-export default connect(mapStateToProps, {})(RevealScreen);
+
+const mapDispatchToProps = {
+    updateList,
+    createSections,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RevealScreen);
 
 const styles = StyleSheet.create({
     container: {
