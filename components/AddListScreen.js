@@ -15,14 +15,10 @@ class AddListScreen extends Component {
         super(props);
         this.state = {
             input: "",
-            list: ["bob", "mary", "john", "jim"],
-            pairings: {
-                bob: null,
-                mary: null,
-                john: null,
-                jim: null,
-            },
-            errors: null
+            list: [],
+            pairings: {},
+		  errors: null,
+		  listErrors: null,
         };
     }
 
@@ -35,7 +31,7 @@ class AddListScreen extends Component {
     renderItem = (item) => {
         return (
             <Text key={item.index} style={styles.list_item}>
-                {item.item.toUpperCase()}
+                {item.item}
             </Text>)
     }
 
@@ -88,7 +84,12 @@ class AddListScreen extends Component {
 
     handleCreateList = () => {
         const { list, pairings } = this.state;
-        this.props.createList(list, pairings);
+	   this.props.createList(list, pairings);
+	   if( list.length < 2 ) {
+		   return this.setState({
+			   listErrors: "Please add at least three people!"
+		   })
+	   }
         this.props.navigation.navigate("CheckListScreen");
     }
 
@@ -121,6 +122,7 @@ class AddListScreen extends Component {
 
                 <TouchableOpacity onPress={this.handleCreateList} style={[navigate.button_container]}>
                     <Text style={styles.button_text}>Make your list!</Text>
+				<Text style={errors.error_text} >{this.state.listErrors}</Text>
                 </TouchableOpacity>
             </View>
         );

@@ -33,10 +33,10 @@ export function updateList(list, pairings) {
 export function createSections(list, pairings) {
     let sectionsObject = {};
     for (let key in pairings) {
-        const first_letter = key[0].toUpperCase();
+        const first_letter = key[0];
         sectionsObject = Object.assign(sectionsObject, { [first_letter]: [] });
         for (let i = 0; i < list.length; i++) {
-            if (list[i][0].toUpperCase() === first_letter) {
+            if (list[i][0] === first_letter) {
                 Object.assign(sectionsObject, { [first_letter]: [...sectionsObject[first_letter], list[i]] });
             }
         }

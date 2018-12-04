@@ -25,7 +25,7 @@ class CheckListScreen extends Component {
                         renderItem={(item) => {
                             return (
                                 <Text key={item.index} style={styles.list_item}>
-                                    {item.item.toUpperCase()}
+                                    {item.item}
                                 </Text>
                             )
                         }}
