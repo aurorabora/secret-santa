@@ -84,17 +84,16 @@ class AddListScreen extends Component {
 
     handleCreateList = () => {
         const { list, pairings } = this.state;
-	   this.props.createList(list, pairings);
 	   if( list.length < 2 ) {
 		   return this.setState({
 			   listErrors: "Please add at least three people!"
 		   })
 	   }
+	   this.props.createList(list, pairings);
         this.props.navigation.navigate("CheckListScreen");
     }
 
     render() {
-        this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.title_container}>
