@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { connect } from 'react-redux';
+import { createSections } from '../actions/index';
 
 class SelectNameToRevealScreen extends Component {
     constructor(props) {
@@ -18,37 +19,7 @@ class SelectNameToRevealScreen extends Component {
     }
 
     componentDidMount() {
-        this.createSections();
-    }
-
-    shouldComponentUpdate() {
-        debugger;
-        console.log(this.props.navigation.state.params);
-        return true;
-    }
-
-    createSections = () => {
-        const { pairings, list } = this.props;
-        debugger;
-
-        let sectionsObject = {};
-        for (let key in pairings) {
-            const first_letter = key[0].toUpperCase();
-            sectionsObject = Object.assign(sectionsObject, { [first_letter]: [] });
-            for (let i = 0; i < list.length; i++) {
-                if (list[i][0].toUpperCase() === first_letter) {
-                    Object.assign(sectionsObject, { [first_letter]: [...sectionsObject[first_letter], list[i]] });
-                }
-            }
-        };
-        let sectionsArray = [];
-        for (let key in sectionsObject) {
-            sectionsArray.push({ title: key, data: sectionsObject[key] });
-        };
-
-        this.setState({
-            sections: sectionsArray,
-        });
+        this.props.createSections(this.props.list , this.props.pairings);
     }
 
     onSelectName = (item) => {
@@ -82,7 +53,7 @@ class SelectNameToRevealScreen extends Component {
                                 </View>
                             );
                         }}
-                        sections={this.state.sections}
+                        sections={this.props.sections || []}
                         keyExtractor={(item, index) => item + index}
                     />
                 </View>
@@ -94,12 +65,13 @@ class SelectNameToRevealScreen extends Component {
 function mapStateToProps(state) {
     return {
         list: state.listReducer.list,
-        pairings: state.listReducer.pairings
+        pairings: state.listReducer.pairings,
+        sections: state.listReducer.sections,
     }
 }
 
 const mapDispatchToProps = {
-
+    createSections
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectNameToRevealScreen);

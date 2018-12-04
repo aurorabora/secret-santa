@@ -1,23 +1,29 @@
-import types from '../actions/types';
+import types from "../actions/types";
 
 const DEFAULT_STATE = {
-    pairings: {}
-}
+	pairings: {},
+};
 
 export default (state = DEFAULT_STATE, action) => {
-    switch (action.type) {
-        case types.CREATE_LIST:
+	switch (action.type) {
+		case types.CREATE_LIST:
+			return {
+				...state,
+				list: action.payload.list,
+				pairings: action.payload.pairings,
+			};
+		case types.UPDATE_LIST:
+			return {
+				...state,
+				list: action.payload.list,
+				pairings: action.payload.pairings,
+			};
+        case types.CREATE_SECTIONS:
             return {
                 ...state,
-                list: action.payload.list,
-                pairings: action.payload.pairings,
+                sections: action.payload.sections
             }
-        case types.UPDATE_LIST:
-            return {
-                ...state,
-                pairings: action.payload.pairings
-            }
-        default:
-            return state
-    }
-}
+		default:
+			return state;
+	}
+};
