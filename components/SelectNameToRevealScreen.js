@@ -40,7 +40,7 @@ class SelectNameToRevealScreen extends Component {
                             return (
                                 <TouchableOpacity onPress={() => { this.onSelectName(item) }} style={styles.item_container} key={index} value={item}>
                                     <Text style={styles.list_item}>
-                                        {item.toUpperCase()}
+                                        {item}
                                     </Text>
                                 </TouchableOpacity>)
                         }}
