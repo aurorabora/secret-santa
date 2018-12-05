@@ -43,8 +43,6 @@ const MainNavigation = createStackNavigator({
 
 const AppNavigator = createAppContainer(MainNavigation);
 
-
-
 export default class App extends React.Component {
     render() {
 
@@ -52,7 +50,6 @@ export default class App extends React.Component {
 
         // if (module.hot) {
         //     module.hot.accept('./reducers', () => {
-        //         debugger;
         //       const nextRootReducer = require('./reducers');
         //       store.replaceReducer(nextRootReducer);
         //     });
