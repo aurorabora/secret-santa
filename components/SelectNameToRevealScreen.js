@@ -11,11 +11,9 @@ import { connect } from 'react-redux';
 import { createSections } from '../actions/index';
 
 class SelectNameToRevealScreen extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            sections: [],
-        };
+
+    static navigationOptions = {
+        header: null,
     }
 
     componentDidMount() {
@@ -81,6 +79,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "green",
     },
     title_container: {

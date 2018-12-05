@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
 const errors = StyleSheet.create({
     error_text: {
         color: "red",
-        fontSize: 25,
+        fontSize: 20,
         marginTop: 5
     }
 });
