@@ -9,6 +9,12 @@ import {
 import { connect } from 'react-redux';
 
 class CheckListScreen extends Component {
+
+    static navigationOptions = {
+        header: null,
+    }
+    
+    
     navigateToSelectName = () => {
         this.props.navigation.navigate("SelectNameToRevealScreen", { refresh: () => { console.log("refreshed") } });
     }
@@ -56,6 +62,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "green",
     },
     title_container: {
@@ -82,11 +89,10 @@ const styles = StyleSheet.create({
     },
     button_container: {
         backgroundColor: "rgb(221, 1, 34)",
-        width: "90%",
+        width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 20,
         height: 70,
         marginTop: 20
     },

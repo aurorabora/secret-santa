@@ -9,7 +9,6 @@ import {
 
 class SplashScreen extends Component {
     static navigationOptions = {
-        title: "Splash Screen",
         header: null,
     };
 

@@ -38,15 +38,25 @@ const MainNavigation = createStackNavigator({
 }, {
         navigationOptions: {
             gesturesEnabled: false
-        }
+        },
     });
 
-const AppNavigator = createAppContainer(MainNavigation)
+const AppNavigator = createAppContainer(MainNavigation);
+
+
 
 export default class App extends React.Component {
     render() {
 
         const store = createStore(rootReducer, {}, applyMiddleware());
+
+        // if (module.hot) {
+        //     module.hot.accept('./reducers', () => {
+        //         debugger;
+        //       const nextRootReducer = require('./reducers');
+        //       store.replaceReducer(nextRootReducer);
+        //     });
+        //   }
 
         return (
             <Provider store={store}>
