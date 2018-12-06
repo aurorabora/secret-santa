@@ -9,11 +9,6 @@ import {
 import { connect } from 'react-redux';
 
 class CheckListScreen extends Component {
-
-    static navigationOptions = {
-        header: null,
-    }
-    
     
     navigateToSelectName = () => {
         this.props.navigation.navigate("SelectNameToRevealScreen", { refresh: () => { console.log("refreshed") } });
