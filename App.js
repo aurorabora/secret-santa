@@ -16,6 +16,7 @@ import SelectNameToRevealScreen from './components/SelectNameToRevealScreen';
 import RevealScreen from './components/RevealScreen';
 import FinishScreen from './components/FinishScreen';
 
+
 const MainNavigation = createStackNavigator({
     SplashScreen: {
         screen: SplashScreen,
@@ -69,5 +70,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
+        
     },
 });
