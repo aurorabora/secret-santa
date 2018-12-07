@@ -6,6 +6,7 @@ import {
     TextInput,
     TouchableOpacity,
     FlatList,
+    ImageBackground,
 } from "react-native";
 import { connect } from 'react-redux';
 import { createList } from '../actions/index';
@@ -95,7 +96,7 @@ class AddListScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ImageBackground source={require('../assets/images/wallpaperscrn.jpg')} style={styles.container}>
                 <View style={styles.title_container}>
                     <Text style={styles.title}>Enter everyone&#39;s name!</Text>
                 </View>
@@ -109,7 +110,7 @@ class AddListScreen extends Component {
                         />
                     </View>
                     <TouchableOpacity onPress={this.submitInput} style={[styles.button_container]}>
-                        <Text style={styles.button_text}>Add!</Text>
+                        <Text style={styles.button_text}>+</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -123,7 +124,7 @@ class AddListScreen extends Component {
                     <Text style={styles.button_text}>Make your list!</Text>
 				<Text style={errors.error_text} >{this.state.listErrors}</Text>
                 </TouchableOpacity>
-            </View>
+            </ImageBackground>
         );
     }
 }
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         alignItems: "center",
-        backgroundColor: "green",
+        // backgroundColor: "green",
     },
     row: {
         display: "flex",
@@ -162,7 +163,9 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 35,
-        color: "white",
+        color: "black",
+        backgroundColor: "white",
+        padding: 10,
     },
     input_container: {
         height: 60,
@@ -171,22 +174,36 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        backgroundColor: "white",
+        backgroundColor: 'white',
+        borderColor:'rgb(211,211,211)',
         paddingLeft: 20,
     },
     textInput: {
         fontSize: 20,
-        backgroundColor: "white",
-        width: "50%",
+        backgroundColor: 'rgb(211,211,211)',
+        width: "40%",
         height: 30,
     },
     button_container: {
-        backgroundColor: "rgb(221, 1, 34)",
-        width: "40%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 20,
+        // backgroundColor: "rgb(221, 1, 34)",
+        // width: "30%",
+        // display: "flex",
+        // alignItems: "center",
+        // justifyContent: "center",
+        // borderRadius: 100,
+       borderWidth:1,
+       borderColor:'rgba(0,0,0,0.2)',
+       alignItems:'center',
+       justifyContent:'center',
+       width:100,
+       height:100,
+       backgroundColor:'rgb(72,172,180)',
+       borderRadius:100,
+       shadowColor: 'grey',
+       shadowOpacity: 0.6,
+       elevation: 6,
+       shadowRadius: 15 ,
+       shadowOffset : { width: 46, height: 13},
     },
     button_text: {
         color: "white",
@@ -195,9 +212,10 @@ const styles = StyleSheet.create({
     list_container: {
         backgroundColor: "white",
         height: "50%",
-        width: "95%",
+        width: "70%",
         marginTop: 15,
-        padding: 20
+        padding: 20,
+        borderRadius: 30,
     },
     list_item: {
         marginTop: 10,
