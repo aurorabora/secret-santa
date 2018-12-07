@@ -96,7 +96,7 @@ class AddListScreen extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../assets/images/wallpaper.jpg')} style={styles.container}>
+            <ImageBackground source={require('../assets/images/wallpaper.png')} style={styles.container}>
                 <View style={styles.title_container}>
                     {/* <Text style={styles.title}>Enter everyone&#39;s name!</Text> */}
                 </View>
@@ -168,8 +168,8 @@ const styles = StyleSheet.create({
         
     },
     input_container: {
-        height: 60,
-        width: "50%",
+        height: 50,
+        width: "80%",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -177,42 +177,40 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderColor:'rgb(211,211,211)',
         paddingLeft: 20,
+        marginLeft: 30,
         borderRadius:40,
-        marginTop:30,
+        marginTop:40,
         borderWidth:1,
         borderColor:'grey',
+        shadowColor: 'grey',
+        shadowOpacity: 0.2,
+        elevation: 3,
+        shadowRadius: 3 ,
     },
     textInput: {
         fontSize: 20,
         backgroundColor: 'white',
         width: "40%",
         height: 30,
-        
     },
+    
     button_container: {
         // backgroundColor: "rgb(221, 1, 34)",
         // width: "30%",
         // display: "flex",
         // alignItems: "center",
         // justifyContent: "center",
-        // borderRadius: 100,
-       borderWidth:1,
-       borderColor:'rgba(0,0,0,0.2)',
+       borderRadius: 100,
        alignItems:'center',
        justifyContent:'center',
-       width:80,
-       height:80,
-       backgroundColor:'rgb(72,172,180)',
-       borderRadius:100,
-       shadowColor: 'grey',
-       shadowOpacity: 0.6,
-       elevation: 6,
-       shadowRadius: 10 ,
-       shadowOffset : { width: 20, height: 13},
-       marginTop:30,
+       width:40,
+       height:40,
+       marginTop:40,
+       position: 'relative',
+       right:60,
     },
     button_text_add: {
-        color: "white",
+        color: "grey",
         fontSize: 40,
     },
     button_text: {
@@ -223,10 +221,10 @@ const styles = StyleSheet.create({
     list_container: {
         backgroundColor: "white",
         height: "50%",
-        width: "70%",
+        width: "80%",
         marginTop: 6,
         padding: 20,
-        borderRadius: 30,
+        borderRadius: 10,
         borderWidth: 5,
         borderColor: 'rgb(191,27,34)',
     },
@@ -248,13 +246,17 @@ const errors = StyleSheet.create({
 const navigate = StyleSheet.create({
     button_container: {
         backgroundColor: "rgb(246, 185, 1)",
-        padding: 10,
-        width: "70%",
+        padding: 5,
+        width: "80%",
         height:"8%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 90,
         marginTop: 20,
+        shadowColor: 'grey',
+        shadowOpacity: 0.2,
+        elevation: 3,
+        shadowRadius: 3 ,
     },
 });
