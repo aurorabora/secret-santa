@@ -96,9 +96,9 @@ class AddListScreen extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../assets/images/wallpaperscrn.jpg')} style={styles.container}>
+            <ImageBackground source={require('../assets/images/wallpaper.jpg')} style={styles.container}>
                 <View style={styles.title_container}>
-                    <Text style={styles.title}>Enter everyone&#39;s name!</Text>
+                    {/* <Text style={styles.title}>Enter everyone&#39;s name!</Text> */}
                 </View>
                 <View style={styles.row}>
                     <View style={styles.input_container}>
@@ -110,7 +110,7 @@ class AddListScreen extends Component {
                         />
                     </View>
                     <TouchableOpacity onPress={this.submitInput} style={[styles.button_container]}>
-                        <Text style={styles.button_text}>+</Text>
+                        <Text style={styles.button_text_add}>+</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -121,7 +121,7 @@ class AddListScreen extends Component {
                 </View>
 
                 <TouchableOpacity onPress={this.handleCreateList} style={[navigate.button_container]}>
-                    <Text style={styles.button_text}>Make your list!</Text>
+                    <Text style={styles.button_text}>M a k e  y o u r  l i s t !</Text>
 				<Text style={errors.error_text} >{this.state.listErrors}</Text>
                 </TouchableOpacity>
             </ImageBackground>
@@ -163,9 +163,9 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 35,
-        color: "black",
-        backgroundColor: "white",
-        padding: 10,
+        // color: "black",
+        // backgroundColor: "white",
+        
     },
     input_container: {
         height: 60,
@@ -177,12 +177,17 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderColor:'rgb(211,211,211)',
         paddingLeft: 20,
+        borderRadius:40,
+        marginTop:30,
+        borderWidth:1,
+        borderColor:'grey',
     },
     textInput: {
         fontSize: 20,
-        backgroundColor: 'rgb(211,211,211)',
+        backgroundColor: 'white',
         width: "40%",
         height: 30,
+        
     },
     button_container: {
         // backgroundColor: "rgb(221, 1, 34)",
@@ -195,31 +200,39 @@ const styles = StyleSheet.create({
        borderColor:'rgba(0,0,0,0.2)',
        alignItems:'center',
        justifyContent:'center',
-       width:100,
-       height:100,
+       width:80,
+       height:80,
        backgroundColor:'rgb(72,172,180)',
        borderRadius:100,
        shadowColor: 'grey',
        shadowOpacity: 0.6,
        elevation: 6,
-       shadowRadius: 15 ,
-       shadowOffset : { width: 46, height: 13},
+       shadowRadius: 10 ,
+       shadowOffset : { width: 20, height: 13},
+       marginTop:30,
+    },
+    button_text_add: {
+        color: "white",
+        fontSize: 40,
     },
     button_text: {
         color: "white",
-        fontSize: 40,
+        fontSize: 25,
+        paddingTop: 10,
     },
     list_container: {
         backgroundColor: "white",
         height: "50%",
         width: "70%",
-        marginTop: 15,
+        marginTop: 6,
         padding: 20,
         borderRadius: 30,
+        borderWidth: 5,
+        borderColor: 'rgb(191,27,34)',
     },
     list_item: {
         marginTop: 10,
-        fontSize: 20
+        fontSize: 20,
     },
 });
 
@@ -236,11 +249,12 @@ const navigate = StyleSheet.create({
     button_container: {
         backgroundColor: "rgb(246, 185, 1)",
         padding: 10,
-        width: "80%",
+        width: "70%",
+        height:"8%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 10,
+        borderRadius: 90,
         marginTop: 20,
     },
 });
