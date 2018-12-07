@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
+    ImageBackground,
 } from "react-native";
 
 import { connect } from 'react-redux';
@@ -78,7 +79,7 @@ class RevealScreen extends Component {
     renderSecretSanta = () => {
         const { list } = this.props;
         return (
-            <View style={{ width: "100%", height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <ImageBackground source={require('../assets/images/secretsantascreen.png')} style={{ width: "100%", height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <View style={[styles.title_container, { marginTop: 20 }]}>
                     <Text style={styles.title}>
                         {this.state.reveal}!
@@ -91,7 +92,7 @@ class RevealScreen extends Component {
                         <Text style={styles.button_text}>{list.length == 1 ? "Finish!" : "Pass the phone!" }</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </ImageBackground>
         );
     }
 
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         alignItems: "center",
-        backgroundColor: "green",
+        // backgroundColor: "green",
     },
     title_container: {
         width: "100%",
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 35,
-        color: "white",
+        color: "black",
     },
     section_title_container: {
         width: "100%",
