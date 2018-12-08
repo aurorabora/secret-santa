@@ -32,20 +32,20 @@ export function updateList(list, pairings) {
 
 export function createSections(list, pairings) {
     let sectionsObject = {};
-    for (let key in pairings) {
-        const first_letter = key[0];
+    list.sort();    
+    list.forEach( (item , itemIndex ) => {
+        const first_letter = item[0];
         sectionsObject = Object.assign(sectionsObject, { [first_letter]: [] });
         for (let i = 0; i < list.length; i++) {
             if (list[i][0] === first_letter) {
                 Object.assign(sectionsObject, { [first_letter]: [...sectionsObject[first_letter], list[i]] });
             }
         }
-    };
+    });
     let sectionsArray = [];
     for (let key in sectionsObject) {
         sectionsArray.push({ title: key, data: sectionsObject[key] });
     };
-
     return {
         type: types.CREATE_SECTIONS,
         payload: {
