@@ -6,10 +6,12 @@ import {
     TouchableOpacity,
     Dimensions,
     ImageBackground,
+    Animated,
 } from "react-native";
 
 // // *************** Fonts *************************/
 // import { Fonts } from './src/utils/fonts';
+
 
 class SplashScreen extends Component {
     static navigationOptions = {
