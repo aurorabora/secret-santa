@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
+
 /*********** Redux ***********/
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
